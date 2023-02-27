@@ -9,10 +9,10 @@ from utils import LandmarkImage,LandmarkImage_98
 
 def mobilenet_v2(input, weight_decay, batch_norm_params):
     features = {}
-    with tf.variable_scope('Mobilenet'):
+    with tf.compat.v1.variable_scope('Mobilenet'):
         with slim.arg_scope([slim.convolution2d, slim.separable_conv2d], \
                             activation_fn=tf.nn.relu6,\
-                            weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
+                            weights_initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
                             biases_initializer=tf.zeros_initializer(),
                             weights_regularizer=slim.l2_regularizer(weight_decay),
                             normalizer_fn=slim.batch_norm,
@@ -211,11 +211,11 @@ def mobilenet_v2(input, weight_decay, batch_norm_params):
 def pfld_inference(input, weight_decay, batch_norm_params):
 
     coefficient = 1
-    with tf.variable_scope('pfld_inference'):
+    with tf.compat.v1.variable_scope('pfld_inference'):
         features = {}
         with slim.arg_scope([slim.convolution2d, slim.separable_conv2d], \
                             activation_fn=tf.nn.relu6,\
-                            weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
+                            weights_initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
                             biases_initializer=tf.zeros_initializer(),
                             weights_regularizer=slim.l2_regularizer(weight_decay),
                             normalizer_fn=slim.batch_norm,
@@ -395,7 +395,7 @@ def create_model(input, landmark, phase_train, args):
         'decay': 0.995,
         'epsilon': 0.001,
         'updates_collections':  None,#tf.GraphKeys.UPDATE_OPS,
-        'variables_collections': [tf.GraphKeys.TRAINABLE_VARIABLES],
+        'variables_collections': [tf.compat.v1.GraphKeys.TRAINABLE_VARIABLES],
         'is_training': phase_train
     }
 
@@ -410,7 +410,7 @@ def create_model(input, landmark, phase_train, args):
     print('\nauxiliary net')
     with slim.arg_scope([slim.convolution2d, slim.fully_connected], \
                         activation_fn=tf.nn.relu,\
-                        weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
+                        weights_initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
                         biases_initializer=tf.zeros_initializer(),
                         weights_regularizer=slim.l2_regularizer(args.weight_decay),
                         normalizer_fn=slim.batch_norm,

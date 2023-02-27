@@ -35,11 +35,11 @@ def main(args):
         list_ops = {}
 
         batch_train_dataset = train_dataset.batch(args.batch_size).repeat()
-        train_iterator = batch_train_dataset.make_one_shot_iterator()
+        train_iterator = tf.compat.v1.data.make_one_shot_iterator(batch_train_dataset)
         train_next_element = train_iterator.get_next()
 
         batch_test_dataset = test_dataset.batch(args.batch_size).repeat()
-        test_iterator = batch_test_dataset.make_one_shot_iterator()
+        test_iterator = tf.compat.v1.data.make_one_shot_iterator(batch_test_dataset)
         test_next_element = test_iterator.get_next()
 
         list_ops['num_train_file'] = num_train_file
@@ -153,7 +153,7 @@ def main(args):
             print('Running train.')
 
             merged = tf.compat.v1.summary.merge_all()
-            train_write = tf.scompat.v1.ummary.FileWriter(log_dir, sess.graph)
+            train_write = tf.compat.v1.summary.FileWriter(log_dir, sess.graph)
             for epoch in range(epoch_start, args.max_epoch):
                 start = time.time()
                 train_L, train_L2 = train(sess, epoch_size, epoch, list_ops)
@@ -339,7 +339,7 @@ def parse_arguments(argv):
     parser.add_argument('--image_channels', type=int, default=3)
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--pretrained_model', type=str, default=None)
-    parser.add_argument('--model_dir', type=str, default='models1/model_test')
+    parser.add_argument('--model_dir', type=str, default='models1\model_test')
     parser.add_argument('--learning_rate', type=float, default=0.001)
     parser.add_argument('--lr_epoch', type=str, default='10,20,30,40,200,500')
     parser.add_argument('--weight_decay', type=float, default=5e-5)

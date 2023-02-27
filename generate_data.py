@@ -14,11 +14,11 @@ def DateSet(file_list, args, debug=False):
 
     def _parse_data(filename, landmarks, attributes,euler_angles):
         # filename, landmarks, attributes = data
-        file_contents = tf.read_file(filename)
+        file_contents = tf.compat.v1.read_file(filename)
         image = tf.image.decode_png(file_contents, channels=args.image_channels)
         # print(image.get_shape())
         # image.set_shape((args.image_size, args.image_size, args.image_channels))
-        image = tf.image.resize_images(image, (args.image_size, args.image_size), method=0)
+        image = tf.compat.v1.image.resize_images(image, (args.image_size, args.image_size), method=0)
         image = tf.cast(image, tf.float32)
 
         image = image / 256.0
@@ -47,7 +47,7 @@ def gen_data(file_list):
         attributes.append(attribute)
         euler_angles.append(euler_angle)
         
-    filenames = np.asarray(filenames, dtype=np.str)
+    filenames = np.asarray(filenames, dtype=str)
     landmarks = np.asarray(landmarks, dtype=np.float32)
     attributes = np.asarray(attributes, dtype=np.int32)
     euler_angles = np.asarray(euler_angles,dtype=np.float32)

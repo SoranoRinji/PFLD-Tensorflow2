@@ -1,5 +1,5 @@
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+import tf_slim as slim
 import numpy as np
 
 def train_model(loss, global_step, data_num, args):
@@ -8,8 +8,8 @@ def train_model(loss, global_step, data_num, args):
     lr_epoch = list(map(int, lr_epoch))
     boundaries = [epoch*data_num//args.batch_size for epoch in lr_epoch]
     lr_values = [args.learning_rate*(lr_factor**x) for x in range(0, len(lr_epoch)+1)]
-    lr_op = tf.train.piecewise_constant(global_step, boundaries, lr_values)
-    optimizer = tf.train.AdamOptimizer(lr_op)
+    lr_op = tf.compat.v1.train.piecewise_constant(global_step, boundaries, lr_values)
+    optimizer = tf.compat.v1.train.AdamOptimizer(lr_op)
     train_op = slim.learning.create_train_op(loss, optimizer, global_step=global_step)
     return train_op, lr_op
 
@@ -30,21 +30,21 @@ def GaussianMaps(sigma):
 
 def LandmarkImage(Landmarks, image_size, sigma=None):
     if sigma is None:
-        sigma = tf.to_float(tf.reduce_max(image_size[1:3]))/4
-    d = tf.to_int32(3 * sigma + 0.5)
+        sigma = tf.compat.v1.to_float(tf.reduce_max(image_size[1:3]))/4
+    d = tf.compat.v1.to_int32(3 * sigma + 0.5)
     xx = tf.tile(tf.expand_dims(tf.range(-d, d, 1), 0), (2 * d, 1))
     yy = tf.tile(tf.expand_dims(tf.range(-d, d, 1), 1), (1, 2 * d))
     Pixels = tf.concat([tf.expand_dims(yy,-1), tf.expand_dims(xx,-1)], axis=-1)
-    D = tf.reduce_sum(tf.square(tf.to_float(Pixels)), axis=-1)
+    D = tf.reduce_sum(tf.square(tf.compat.v1.to_float(Pixels)), axis=-1)
     zeros = tf.zeros((2 * d, 2 * d), dtype=tf.float32)
     Gaussian = tf.exp(-D/(2*sigma*sigma))
     values = tf.where(tf.greater(D, (3 * sigma) ** 2), zeros, Gaussian)
 
-    shape = tf.to_float(tf.expand_dims(image_size[1:3],axis=0))
+    shape = tf.compat.v1.to_float(tf.expand_dims(image_size[1:3],axis=0))
 
     def Do(L):
         def DoIn(Point):
-            intPoint = tf.to_int32(Point)
+            intPoint = tf.compat.v1.to_int32(Point)
             locations = Pixels + intPoint
             img = tf.scatter_nd(locations, values, shape=(image_size[1], image_size[2]))
             return img
@@ -58,22 +58,22 @@ def LandmarkImage(Landmarks, image_size, sigma=None):
  
 def LandmarkImage_98(Landmarks, image_size, sigma=None):
     if sigma is None:
-        sigma = tf.to_float(tf.reduce_max(image_size[1:3]))/4
-    d = tf.to_int32(3 * sigma + 0.5)
+        sigma = tf.compat.v1.to_float(tf.reduce_max(image_size[1:3]))/4
+    d = tf.compat.v1.to_int32(3 * sigma + 0.5)
     xx = tf.tile(tf.expand_dims(tf.range(-d, d, 1), 0), (2 * d, 1))
     yy = tf.tile(tf.expand_dims(tf.range(-d, d, 1), 1), (1, 2 * d))
     Pixels = tf.concat([tf.expand_dims(yy,-1), tf.expand_dims(xx,-1)], axis=-1)
-    D = tf.reduce_sum(tf.square(tf.to_float(Pixels)), axis=-1)
+    D = tf.reduce_sum(tf.square(tf.compat.v1.to_float(Pixels)), axis=-1)
     zeros = tf.zeros((2 * d, 2 * d), dtype=tf.float32)
     Gaussian = tf.exp(-D/(2*sigma*sigma))
     values = tf.where(tf.greater(D, (3 * sigma) ** 2), zeros, Gaussian)
 
-    shape = tf.to_float(tf.expand_dims(image_size[1:3],axis=0))
+    shape = tf.compat.v1.to_float(tf.expand_dims(image_size[1:3],axis=0))
     #print('debug 0 ::','shape value :',shape) #(1,2)
 
     def Do(L):
         def DoIn(Point):
-            intPoint = tf.to_int32(Point)
+            intPoint = tf.compat.v1.to_int32(Point)
             locations = Pixels + intPoint
             #print('debug 2','intpoint shape:{} Pixels shape{} locations shape{}'.format(intPoint.shape,Pixels.shape,locations.shape))
             #(2,) (,,2) (,,2) 
@@ -101,15 +101,15 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import cv2
 
-    landmarks_placeholder = tf.placeholder(tf.float32, shape=(None, 18), name='landmarks')
+    landmarks_placeholder = tf.compat.v1.placeholder(tf.float32, shape=(None, 18), name='landmarks')
     landmarks = np.asarray([[0, 0, 0, 5, 0, 10,\
                              5, 0, 5, 5, 5, 10,\
                              10,0, 10,5, 10,10]], dtype=np.float32)/16
 
     img = LandmarkImage(landmarks_placeholder, (1,16,16,1))
 
-    with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+    with tf.compat.v1.Session() as sess:
+        sess.run(tf.compat.v1.global_variables_initializer())
         out = sess.run(img,feed_dict={landmarks_placeholder:landmarks})
         # print(out)
         print(out.shape)
