@@ -334,7 +334,7 @@ def parse_arguments(argv):
     parser.add_argument('--file_list', type=str, default='data/train_data/list.txt')
     parser.add_argument('--test_list', type=str, default='data/test_data/list.txt')
     parser.add_argument('--seed', type=int, default=666)
-    parser.add_argument('--max_epoch', type=int, default=1000)
+    parser.add_argument('--max_epoch', type=int, default=30)
     parser.add_argument('--image_size', type=int, default=112)
     parser.add_argument('--image_channels', type=int, default=3)
     parser.add_argument('--batch_size', type=int, default=64)
