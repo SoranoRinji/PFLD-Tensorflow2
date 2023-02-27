@@ -1,5 +1,8 @@
+# PFLD Implementation with TensorFlow 2 (Compatible)
+This is a modified PFLD-Tensorflow repo which is compatible with Tensorflow 2 since original source is written for Tensorflow 1. Also, some bugs are fixed.
+
 # PFLD implementation with tensorflow
-It is an open surce program reference to https://arxiv.org/pdf/1902.10859.pdf , if you find any bugs or anything incorrect,you can notice it in the issues and pull request,be glad to receive you advices.     
+It is an open source program reference to https://arxiv.org/pdf/1902.10859.pdf , if you find any bugs or anything incorrect,you can notice it in the issues and pull request,be glad to receive you advices.     
 And thanks @lucknote for helping fixing existing bugs.
 
 ## Datasets

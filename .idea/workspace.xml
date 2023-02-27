@@ -7,14 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/tools/emotion_compress.py" line="5" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6343bab9-24b8-463a-9523-f549d7e656a1" name="Default Changelist" comment="Edited to make it available for Tensorflow 2 (Partly).">
-      <change beforePath="$PROJECT_DIR$/.idea/PFLD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PFLD.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model2.py" beforeDir="false" afterPath="$PROJECT_DIR$/model2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="6343bab9-24b8-463a-9523-f549d7e656a1" name="Default Changelist" comment="Train is now available for Tensorflow 2 (and with DirectML)." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,17 +128,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Development/repo/PFLD-Tensorflow2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Development/repo/PFLD-Tensorflow2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\TCL_code\PFLD\tools" />
@@ -291,7 +284,7 @@
       <option name="presentableId" value="Default" />
       <updated>1556501261812</updated>
       <workItem from="1677467282066" duration="1533000" />
-      <workItem from="1677468908329" duration="4894000" />
+      <workItem from="1677468908329" duration="5414000" />
     </task>
     <task id="LOCAL-00001" summary="Edited to make it available for Tensorflow 2 (Partly).">
       <created>1677467432892</created>
@@ -307,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677468817041</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Train is now available for Tensorflow 2 (and with DirectML).">
+      <created>1677480090029</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677480090029</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -365,7 +365,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Edited to make it available for Tensorflow 2 (Partly)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited to make it available for Tensorflow 2 (Partly)." />
+    <MESSAGE value="Train is now available for Tensorflow 2 (and with DirectML)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Train is now available for Tensorflow 2 (and with DirectML)." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PFLD_Tensorflow2$SetPreparation.coverage" NAME="SetPreparation Coverage Results" MODIFIED="1677470014012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
